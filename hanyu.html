@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>韩豫的个人网页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 20px auto;
+        }
+        
+        .avatar {
+            display: block;
+            margin: 0 auto 25px;
+            border: 3px solid #4a4a4a;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+        
+        .avatar:hover {
+            transform: scale(1.05);
+            border-color: #6a5acd;
+            box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
+        }
+        
+        .name {
+            color: #333;
+            font-size: 50px;
+            margin: 15px 0;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tags {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .tag {
+            background: #f0f0f0;
+            color: #333;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .zhushi, .professional {
+            color: #333;
+            font-size: 20px;
+            margin: 20px 0;
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+        
+        .professional {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #6a5acd;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #aaa, transparent);
+            margin: 25px auto;
+            width: 80%;
+        }
+        
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            font-size: 20px;
+        }
+        
+        .contact-item a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-item a:hover {
+            color: #6a5acd;
+            text-decoration: underline;
+        }
+        
+        .contact-icon {
+            font-size: 22px;
+        }
+        
+        @media (max-width: 768px) {
+            .name {
+                font-size: 40px;
+            }
+            
+            .avatar {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .tag {
+                font-size: 16px;
+                padding: 6px 16px;
+            }
+            
+            .zhushi, .professional, .contact-item {
+                font-size: 18px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .name {
+                font-size: 32px;
+            }
+            
+            .avatar {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .tag {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body background="C:\Users\13032\Desktop\Hanyu‘s professional web\images\background.jpg">
+    <div class="container">
+        <!-- 头像 -->
+        <img src="C:\Users\13032\Desktop\Hanyu‘s professional web\images\ea009fd6aabf09d097bd1d4ce213162.jpg" 
+             alt="韩豫的头像" class="avatar">
+
+        <!-- 名字 -->
+        <h1 class="name">韩豫</h1>
+        
+        <!-- 标签 -->
+        <div class="tags">
+            <div class="tag">江澄魏婴兄弟友情</div>
+            <div class="tag">coser</div>
+            <div class="tag">同人文</div>
+        </div>
+        
+        <!-- 主食 -->
+        <div class="zhushi">
+            主食：墨香三部曲，盗墓笔记，某某，伪渣，兄坑渣反推七九
+        </div>
+        
+        <!-- 个人简介 -->
+        <div class="professional">
+            什么都不会，什么都会一点，高批，不好看别骂我别骂我<br>
+            我推魔道祖师和盗墓笔记，吃的很杂<br>
+            我是江澄魏婴兄弟友情向啊啊啊啊我不是羡澄姐
+        </div>
+        
+        <!-- 分隔线 -->
+        <div class="divider"></div>
+        
+        <!-- 联系方式 -->
+        <div class="contact">
+            <div class="contact-item">
+                <a href="https://www.douyin.com/user/MS4wLjABAAAAnmpFwrI5bSbUAxv_DFm9PDLo-nofcSAE1r8jNlhxOURDdMFLAlZ5ovhwvEnLNOud?from_tab_name=main&is_search=0&list_name=follow&nt=0" 
+                   title="个人抖音">
+                    <span class="contact-icon"></span>燕怀瑾
+                </a>
+            </div>
+            
+            <div class="contact-item">
+                <a href="mailto:3871525431@qq.com">
+                    <span class="contact-icon"></span>3871525431@qq.com
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
