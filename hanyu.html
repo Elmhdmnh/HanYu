@@ -2,18 +2,24 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>韩豫的个人网页</title>
     <style>
-        /* 修复布局问题 */
+        /* 基础重置与响应式改进 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
-            flex-direction: column; /* 添加这行 */
+            flex-direction: column;
             text-align: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f5f5;
             color: #333;
             line-height: 1.6;
-            padding: 20px;
+            padding: 15px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -24,42 +30,58 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: -1;
         }
         
         .container {
-            max-width: 800px;
+            max-width: 95%;
             width: 100%;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            margin: 20px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px 20px;
+            margin: 15px auto;
             opacity: 0;
             transform: translateY(20px);
             animation: containerFadeIn 0.8s ease forwards;
             backdrop-filter: blur(5px);
+            position: relative;
+            z-index: 1;
         }
         
         /* 页脚美化 */
         footer {
-            background: transparent; /* 更深背景增强对比 */
+            background: transparent;
             color: #000000;
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             text-align: center;
             width: 100%;
             position: relative;
-            margin-top: 20px;
-            border-top: 1px solid rgba(106, 90, 205, 0.3); /* 添加顶部边框 */
+            margin-top: 10px;
+            border-top: 1px solid rgba(106, 90, 205, 0.3);
+            z-index: 1;
         }
         
         .footer-content {
-            max-width: 800px;
+            max-width: 95%;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 10px;
         }
         
         .copyright {
-            font-size: 16px;
+            font-size: 14px;
             color: #000000;
         }
         
@@ -67,15 +89,17 @@
             color: #000000;
             text-decoration: none;
             transition: all 0.3s ease;
-            margin: 0 5px;
+            margin: 0 3px;
+            display: inline-block;
+            white-space: nowrap;
         }
         
         .copyright a:hover {
-            color: #fff;
+            color: #6a5acd;
             text-decoration: underline;
         }
         
-        /* 其他样式保持不变 */
+        /* 动画 */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -98,10 +122,10 @@
         }
         
         .loader {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(106, 90, 205, 0.2);
-            border-top: 5px solid #6a5acd;
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(106, 90, 205, 0.2);
+            border-top: 4px solid #6a5acd;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -118,13 +142,21 @@
             }
         }
         
+        /* 头像优化 */
+        .avatar-container {
+            position: relative;
+            margin: 0 auto 20px;
+            width: 180px;
+            height: 180px;
+        }
+        
         .avatar {
             display: block;
-            margin: 0 auto 25px;
+            margin: 0 auto;
             border: 3px solid #4a4a4a;
             border-radius: 50%;
-            width: 200px;
-            height: 200px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             transition: all 0.3s ease;
         }
@@ -135,68 +167,76 @@
             box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
         }
         
+        /* 名字优化 */
         .name {
             color: #333;
-            font-size: 50px;
-            margin: 15px 0;
-            letter-spacing: 1px;
+            font-size: 2.5rem;
+            margin: 10px 0;
+            letter-spacing: 0.5px;
             font-weight: 700;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            line-height: 1.2;
         }
         
+        /* 标签优化 */
         .tags {
-            margin: 20px 0;
+            margin: 15px 0;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
         
         .tag {
-            background: #f0f0f0;
+            background: rgba(106, 90, 205, 0.1);
             color: #333;
-            padding: 8px 20px;
+            padding: 7px 16px;
             border-radius: 30px;
-            font-size: 18px;
+            font-size: 16px;
             transition: all 0.3s ease;
+            border: 1px solid rgba(106, 90, 205, 0.2);
+            font-weight: 500;
         }
         
         .tag:hover {
-            background: #e0e0e0;
+            background: rgba(106, 90, 205, 0.2);
             transform: translateY(-2px);
         }
         
+        /* 文本内容优化 */
         .zhushi, .professional {
             color: #333;
-            font-size: 20px;
-            margin: 20px 0;
-            line-height: 1.7;
-            padding: 0 20px;
+            font-size: 18px;
+            margin: 15px 0;
+            line-height: 1.6;
+            padding: 0 10px;
         }
         
         .professional {
             background: transparent;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             border-left: 4px solid #6a5acd;
+            text-align: left;
         }
         
         .divider {
             height: 1px;
             background: linear-gradient(to right, transparent, #aaa, transparent);
-            margin: 25px auto;
+            margin: 20px auto;
             width: 80%;
         }
         
+        /* 联系信息优化 */
         .contact {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
         
         .contact-item {
-            font-size: 20px;
+            font-size: 18px;
         }
         
         .contact-item a {
@@ -206,75 +246,141 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            background: rgba(106, 90, 205, 0.08);
+            border: 1px solid rgba(106, 90, 205, 0.1);
         }
         
         .contact-item a:hover {
             color: #6a5acd;
-            text-decoration: underline;
+            background: rgba(106, 90, 205, 0.15);
+            text-decoration: none;
         }
         
         .contact-icon {
-            font-size: 22px;
+            font-size: 20px;
         }
         
+        /* 移动设备优化 */
         @media (max-width: 768px) {
-            .name {
-                font-size: 40px;
+            body {
+                padding: 10px;
             }
             
-            .avatar {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .tag {
-                font-size: 16px;
-                padding: 6px 16px;
-            }
-            
-            .zhushi, .professional, .contact-item {
-                font-size: 18px;
-            }
-            
-            .copyright {
-                font-size: 14px;
-            }
-        }
-        
-        @media (max-width: 480px) {
             .container {
-                padding: 20px;
+                padding: 20px 15px;
+                max-width: 100%;
             }
             
             .name {
-                font-size: 32px;
+                font-size: 2.2rem;
             }
             
-            .avatar {
+            .avatar-container {
                 width: 160px;
                 height: 160px;
             }
             
             .tag {
-                font-size: 14px;
+                font-size: 15px;
+                padding: 6px 14px;
+            }
+            
+            .zhushi, .professional, .contact-item {
+                font-size: 17px;
             }
             
             .copyright {
                 font-size: 13px;
             }
         }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 18px 12px;
+                border-radius: 12px;
+            }
+            
+            .name {
+                font-size: 1.8rem;
+            }
+            
+            .avatar-container {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .tag {
+                font-size: 14px;
+                padding: 5px 12px;
+            }
+            
+            .zhushi, .professional, .contact-item {
+                font-size: 16px;
+            }
+            
+            .professional {
+                padding: 10px;
+                font-size: 15px;
+            }
+            
+            .copyright {
+                font-size: 12px;
+            }
+            
+            .contact-item a {
+                padding: 5px 10px;
+                font-size: 15px;
+            }
+            
+            .divider {
+                margin: 15px auto;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .name {
+                font-size: 1.6rem;
+            }
+            
+            .avatar-container {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .tag {
+                font-size: 13px;
+            }
+            
+            .zhushi, .professional, .contact-item {
+                font-size: 15px;
+            }
+        }
+        
+        /* 触摸优化 */
+        a, .tag, .avatar {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* 性能优化 */
+        .container, .avatar, .tag, .contact-item a {
+            will-change: transform;
+        }
     </style>
 </head>
 <body>
-    <!-- 加载动画（默认隐藏） -->
+    <!-- 加载动画 -->
     <div id="global-loader">
         <div class="loader"></div>
     </div>
     
     <div class="container">
         <!-- 头像 -->
-        <img src="ea009fd6aabf09d097bd1d4ce213162.jpg" 
-             alt="韩豫的头像" class="avatar">
+        <div class="avatar-container">
+            <img src="ea009fd6aabf09d097bd1d4ce213162.jpg" 
+                 alt="韩豫的头像" class="avatar">
+        </div>
 
         <!-- 名字 -->
         <h1 class="name">韩豫</h1>
@@ -324,29 +430,46 @@
     </footer>
     
     <script>
-        // 页面加载处理
+        // 页面加载处理 - 优化版
         document.addEventListener('DOMContentLoaded', function() {
             const loader = document.getElementById('global-loader');
             let loaderTimeout;
             
-            // 如果页面加载时间超过500毫秒，显示加载动画
-            loaderTimeout = setTimeout(() => {
-                loader.style.opacity = '1';
-                loader.style.visibility = 'visible';
-            }, 500);
+            // 页面加载状态检测
+            const pageLoaded = document.readyState === 'complete';
+            
+            if (!pageLoaded) {
+                loaderTimeout = setTimeout(() => {
+                    loader.style.opacity = '1';
+                    loader.style.visibility = 'visible';
+                }, 300);
+            }
             
             // 页面完全加载后
             window.addEventListener('load', function() {
-                // 清除加载动画计时器
                 clearTimeout(loaderTimeout);
                 
-                // 如果加载动画正在显示，则淡出隐藏
+                // 淡出加载动画
                 if (loader.style.visibility === 'visible') {
                     loader.style.opacity = '0';
-                    loader.style.visibility = 'hidden';
+                    setTimeout(() => {
+                        loader.style.visibility = 'hidden';
+                    }, 500);
                 }
             });
+            
+            // 触摸设备优化
+            if ('ontouchstart' in window) {
+                document.body.classList.add('touch-device');
+            }
         });
+        
+        // 防止移动端缩放
+        document.addEventListener('touchmove', function(event) {
+            if (event.scale !== 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
     </script>
 </body>
 </html>
